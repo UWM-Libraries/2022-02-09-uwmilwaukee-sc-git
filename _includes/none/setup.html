@@ -1,28 +1,38 @@
-{% assign curricula = "swc-gapminder|swc-inflammation"  | split: "|" %}
-{% unless curricula contains site.curriculum %}
-{% include warning-curriculum.html %}
-{% endunless %}
+<table style="width:100%">
+  <tr>
+    <th>Date</th>
+    <th>Workshop</th>
+    <th>Set Up Items</th>
+  </tr>
+  <tr>
+    <td>September 15th</td>
+    <td>Data Science for Clinicians and Docs</td>
+    <td><a href = "https://carpentries-incubator.github.io/Data-Science-for-Docs/setup.html">Set Up Instructions here</a></td>
+  </tr>
+  <tr>
+    <td>September 29-30th</td>
+    <td>Intro to Docker</td>
+    <td> <a href = "https://carpentries-incubator.github.io/docker-introduction/setup.html">Set Up Instructions here</a></td>
+  </tr>
+  <tr>
+    <td>October 27th</td>
+    <td>Git/Github</td>
+    <td><a href = "https://carpentries-incubator.github.io/git-novice-branch-pr/setup/">Set Up Instructions here</a></td>
+  </tr>
+  <tr>
+    <td>November 10-11th</td>
+    <td>Intro to Machine Learning with sklearn</td>
+    <td><a href = "https://carpentries-incubator.github.io/machine-learning-novice-sklearn/setup.html">Set Up Instructions here</a></td>
+  </tr>
+  <tr>
+    <td>December 8th</td>
+    <td>TBA</td>
+    <td>TBA</td>
+  </tr>
+</table>
 
-{% include install_instructions/shell.html %}
-{% include install_instructions/git.html %}
-{% include install_instructions/editor.html %}
 
-{% if site.flavor == "r" %}
-{% include install_instructions/r.html %}
-{% elsif site.flavor == "python" %}
-{% include install_instructions/python.html %}
-{% elsif site.flavor == "FIXME" %}
-{% include install_instructions/r.html %}
-{% include install_instructions/python.html %}
-{% else %}
-{% include warning-flavor.html %}
-{% endif %}
 
-{% comment %}
-The following setup instructions are commented out because Carpentries workshops
-cover the these topics less frequently. Please uncomment the lines that
-correspond to the topics covered in your workshop.
 
-{% include install_instructions/sql.html %}
-{% include install_instructions/openrefine.html %}
-{% endcomment %}
+
+

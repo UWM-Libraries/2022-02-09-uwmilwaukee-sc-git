@@ -17,6 +17,7 @@ instructor: ["Stephen Appel", "Ann Hanlon"] # boxed, comma-separated list of ins
 helper: ["Jie Chen", "Karl Holten"]     # boxed, comma-separated list of helpers' names, like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
 email: ["srappel@uwm.edu","hanlon@uwm.edu"]    # boxed, comma-separated list of contact email addresses for the host, lead instructor, or whoever else is handling questions, like ["marlyn.wescoff@example.org", "fran.bilas@example.org", "ruth.lichterman@example.org"]
 collaborative_notes:  # optional: URL for the workshop collaborative notes, e.g. an Etherpad or Google Docs document (e.g., https://pad.carpentries.org/2015-01-01-euphoria)
+eventbrite: # optional: alphanumeric key for Eventbrite registration, e.g., "1234567890AB" (if Eventbrite is being used)
 ---
 
 {% comment %} See instructions in the comments below for how to edit specific sections of this workshop template. {% endcomment %}
@@ -29,6 +30,14 @@ If the value is not 'true', 'false', 'null', or a number, please use
 double quotation marks around the value, unless specified otherwise.
 And run 'make workshop-check' *before* committing to make sure that changes are good.
 {% endcomment %}
+
+
+{% comment %}
+8< ============= For a workshop delete from here =============
+
+8< ============================= until here ==================
+{% endcomment %}
+
 
 {% comment %}
 Check DC curriculum
@@ -69,7 +78,7 @@ displayed if the 'eventbrite' field in the header is not set.
   src="https://www.eventbrite.com/tickets-external?eid={{page.eventbrite}}&ref=etckt"
   frameborder="0"
   width="100%"
-  height="280px"
+  height="400px"
   scrolling="auto">
 </iframe>
 {% endif %}
@@ -87,14 +96,8 @@ the pitch.
 {% include swc/intro.html %}
 {% elsif site.carpentry == "none" %}
 {% include none/intro.html %}
-{% elsif site.carpentry == "dc" %}
-{% include dc/intro.html %}
 {% elsif site.carpentry == "lc" %}
 {% include lc/intro.html %}
-{% endif %}
-
-{% if site.pilot %}
-This is a pilot workshop, testing out a lesson that is still under development. The lesson authors would appreciate any feedback you can give them about the lesson content and suggestions for how it could be further improved.
 {% endif %}
 
 {% comment %}
@@ -107,8 +110,6 @@ workshop is only open to people from a particular institution.
 {% include swc/who.html %}
 {% elsif site.carpentry == "none" %}
 {% include none/who.html %}
-{% elsif site.carpentry == "dc" %}
-{% include dc/who.html %}
 {% elsif site.carpentry == "lc" %}
 {% include lc/who.html %}
 {% endif %}
@@ -118,7 +119,7 @@ LOCATION
 
 This block displays the address and links to maps showing directions
 if the latitude and longitude of the workshop have been set.  You
-can use https://www.latlong.net/ to find the lat/long of an
+can use https://itouchmap.com/latlong.html to find the lat/long of an
 address.
 {% endcomment %}
 {% assign begin_address = page.address | slice: 0, 4 | downcase  %}
@@ -307,56 +308,23 @@ We will use this <a href="{{ page.collaborative_notes }}">collaborative document
 {% endif %}
 
 
-{% comment %}
-SURVEYS - DO NOT EDIT SURVEY LINKS
-{% endcomment %}
-<h2 id="surveys">Surveys</h2>
-<p>Please be sure to complete these surveys before and after the workshop.</p>
-{% if site.carpentry == "incubator" %}
-<p><a href="{{ site.incubator_pre_survey }}">Pre-workshop Survey</a></p>
-<p><a href="{{ site.incubator_post_survey }}">Post-workshop Survey</a></p>
-{% elsif site.incubator_pre_survey or site.incubator_post_survey %}
-<div class="alert alert-danger">
-WARNING: you have defined custom pre- and/or post-survey links for
-a workshop not configured for The Carpentries Incubator
-(the value of `curriculum` is not set to `incubator` in `_config.yml`).
-Please comment out the `incubator_pre_survey` and `incubator_post_survey` fields
-in `_config.yml` or, if this workshop is teaching a lesson in the Incubator,
-change the value of `carpentry` to `incubator`.
-</div>
-{% else %}
-<p><a href="{{ site.pre_survey }}{{ site.github.project_title }}">Pre-workshop Survey</a></p>
-<p><a href="{{ site.post_survey }}{{ site.github.project_title }}">Post-workshop Survey</a></p>
-{% endif %}
 
 <hr>
 
 <h2 id="schedule">Schedule</h2>
 
-{% if site.carpentry == "swc" %}
-{% include swc/schedule.html %}
 {% if site.carpentry == "none" %}
 {% include none/schedule.html %}
-{% elsif site.carpentry == "dc" %}
-{% include dc/schedule.html %}
-{% elsif site.carpentry == "lc" %}
-{% include lc/schedule.html %}
-{% elsif site.carpentry == "incubator" %}
-This workshop is teaching a lesson in [The Carpentries Incubator](https://carpentries-incubator.org/).
-Please check [the lesson homepage]({{ site.incubator_lesson_site }}) for a list of lesson sections and estimated timings.
-{% endif %}
 
+The lesson taught in this workshop is being piloted and a precise schedule is yet to be established. The workshop will include regular breaks. If you would like to know the timing of these breaks in advance, please [contact the workshop organisers](#contact). For a list of lesson sections and estimated timings, [visit the lesson homepage]({{ site.lesson_site }}).
 {% comment %}
 Edit/replace the text above if you want to include a schedule table.
 See the contents of the _includes/custom-schedule.html file for an example of
 how one of these schedule tables is constructed.
 {% endcomment %}
-
-{% if site.pilot %}
-The lesson taught in this workshop is being piloted and a precise schedule is yet to be established. The workshop will include regular breaks. Please [contact the workshop organisers](#contact) if you would like more information about the planned schedule.
 {% endif %}
 
-<hr/>
+<hr>
 
 
 {% comment %}
@@ -413,14 +381,12 @@ during the workshop.
 
 {% if site.carpentry == "none" %}
 {% include none/setup.html %}
-{% if site.carpentry == "swc" %}
-{% include swc/setup.html %}
 {% elsif site.carpentry == "dc" %}
 {% include dc/setup.html %}
 {% elsif site.carpentry == "lc" %}
 {% include lc/setup.html %}
-{% elsif site.carpentry == "incubator" %}
+{% elsif site.carpentry == "pilot" %}
 Please check the "Setup" page of
-[the lesson site]({{ site.incubator_lesson_site }}) for instructions to follow
+[the lesson site]({{ site.lesson_site }}) for instructions to follow
 to obtain the software and data you will need to follow the lesson.
 {% endif %}
