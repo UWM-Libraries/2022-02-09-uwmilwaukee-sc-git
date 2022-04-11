@@ -342,7 +342,7 @@ please preview your site before committing, and make sure to run
 <h2 id="setup">Setup</h2>
 
 <p>
-View the [Setup page](https://carpentries-incubator.github.io/git-novice-branch-pr/setup/).
+  View the <a href = "https://carpentries-incubator.github.io/git-novice-branch-pr/setup/">Setup Page</a>.
 </p>
 <p>
   We maintain a list of common issues that occur during installation as a reference for instructors
